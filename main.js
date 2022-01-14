@@ -32,14 +32,14 @@ function memoTestRandomDisplay() {
 		}
 	}
 
-	function imageAssigner(card) {
+  function imageAssigner(card) {
 		const selectImg = imageRandomizer();
 		const duplicated = isDuplicated(selectImg);
 		if (duplicated) {
 			imageAssigner(card)
     } else {
       card.name = selectImg.match(/^[\w\d-_]+/);
-			card.style.backgroundImage = `url("./img/${selectImg}")`;
+      card.style.backgroundImage = `url("./img/${selectImg}")`;
     }
 	}
 
@@ -48,4 +48,6 @@ function memoTestRandomDisplay() {
 	});
 }
 
-memoTestRandomDisplay();
+document.querySelector('#shuffle').onclick = memoTestRandomDisplay;
+
+
