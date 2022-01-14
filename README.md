@@ -1,2 +1,2 @@
 ## https://devtsp.github.io/memo-test/
-### Memo test game with vanilla JS and Bootstrap 
+### Memo test game experiment with vanilla JS
