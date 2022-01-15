@@ -97,8 +97,7 @@ function handleMatch(selections) {
 	const $matchedPair = document.querySelectorAll(`[name="${selections[0]}"]`);
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
-			matchedCard.style.visibility = 'hidden';
-			matchedCard.parentNode.style.visibility = 'hidden';
+			matchedCard.style.backgroundImage = 'none';
 		});
 	}, 1000);
 }
