@@ -14,10 +14,10 @@ function startGame() {
 	$memoTestBacks.forEach(back => {
 		imageAssigner(back, imagePastEntries);
 		back.style.visibility = 'visible';
-		back.children[0].style.visibility = 'visible';
 	});
 
-	$memoTestFront.forEach(front => {
+  $memoTestFront.forEach(front => {
+    front.style.visibility = 'visible'
 		front.addEventListener('click', e =>
 			handleSelection(e, clickCounter, selections, totalMatches)
 		);
@@ -33,7 +33,7 @@ function imageAssigner(back, imagePastEntries) {
 		imageAssigner(back, imagePastEntries);
 	} else {
 		back.setAttribute('name', randomBackImg.match(/^[\w\d-_]+/));
-		back.style.backgroundImage = `url("./img/${randomBackImg}")`;
+    back.style.backgroundImage = `url("./img/${randomBackImg}")`;    
 	}
 }
 
@@ -70,7 +70,7 @@ function isDuplicated(currentEntry, pastEntries) {
 // USER INPUT SECTION MAIN HANDLER
 
 function handleSelection(e, clickCounter, selections, totalMatches) {
-	e.target.style.visibility = 'hidden';
+	e.target.style.opacity = '0';
 	const cardName = e.target.parentNode.getAttribute('name');
 	clickCounter.clicks++;
 	selections.push(cardName);
@@ -97,8 +97,9 @@ function handleMatch(selections) {
 	const $matchedPair = document.querySelectorAll(`[name="${selections[0]}"]`);
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
-      matchedCard.style.backgroundImage = 'none';
-      matchedCard.children[0].style.opacity = '0';
+      matchedCard.style.visibility = 'hidden';
+      matchedCard.children[0].style.visibility = 'hidden';
+      matchedCard.children[0].style.opacity = '1';
 		});
 	}, 1000);
 }
@@ -108,7 +109,7 @@ function handleUnmatch() {
 	const $fronts = document.querySelectorAll(`#memotest img`);
 	setTimeout(() => {
 		$fronts.forEach(front => {
-			front.style.visibility = 'visible';
+			front.style.opacity = '1';
 		});
 	}, 1000);
 }

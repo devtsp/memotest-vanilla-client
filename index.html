@@ -8,50 +8,47 @@
 	</head>
 	<style>
 		@import url('./node_modules/bootstrap/dist/css/bootstrap.min.css');
-
-		body {
-			background-color: rgb(255, 255, 255);
-			justify-content: center;
-		}
-
 		li {
 			list-style: none;
-			height: 100px;
-			width: 100px;
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-color: white;
 			visibility: hidden;
-			display: inline-block;
-		}
-		#memotest img {
-			height: 100px;
-			width: 100px;
-			opacity: 0.7;
+      text-align: center;
+      cursor: pointer;
 		}
 	</style>
 	<body>
-		<button id="shuffle" class="btn btn-primary">Shuffle</button>
-		<p id="message"></p>
-		<ul id="memotest" class="container">
-			<li><img id="0" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="1" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="2" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="3" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="4" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="5" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="6" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="7" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="8" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="9" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="10" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="11" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="12" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="13" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="14" src="img/questionmark.png" alt="questionmark" /></li>
-			<li><img id="15" src="img/questionmark.png" alt="questionmark" /></li>
-		</ul>
+		<div class="d-flex flex-column h-100">
+      <button id="shuffle" class="btn btn-success m-2">Shuffle</button>
+      <ul id="memotest" class="container m-1 align-self-center">
+        <div class="row g-0" >
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="0" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="1" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="2" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="3" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+            </div>
+        <div class="row g-0">
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="4" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="5" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="6" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="7" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+            </div>
+            <div class="row g-0">
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="8" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="9" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="10" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="11" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+            </div>
+        <div class="row g-0">
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="12" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="13" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="14" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 p-1 w-25"><img class="img-fluid" id="15" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+            </div>
+      </ul>
+    </div>
 		<script src="main.js"></script>
 	</body>
 </html>
