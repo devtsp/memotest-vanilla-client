@@ -14,38 +14,41 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-color: white;
-			visibility: hidden;
       text-align: center;
       cursor: pointer;
 		}
+    ul {
+      max-height: 80vh;
+    }
 	</style>
 	<body>
-		<div class="d-flex flex-column h-100">
-      <button id="shuffle" class="btn btn-success m-2">Shuffle</button>
-      <ul id="memotest" class="container m-1 align-self-center">
+		<div class="d-flex flex-column align-items-center p-1">
+      <button id="shuffle" class="btn bg-dark bg-gradient border border-2 rounded text-white w-100 mb-1">Shuffle</button>
+
+      <ul id="memotest" class="container p-0">
         <div class="row g-0" >
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="0" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="1" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="2" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="3" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="0" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="1" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="2" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="3" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
             </div>
         <div class="row g-0">
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="4" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="5" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="6" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="7" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="4" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="5" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="6" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="7" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
             </div>
             <div class="row g-0">
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="8" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="9" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="10" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="11" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="8" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="9" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="10" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="11" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
             </div>
         <div class="row g-0">
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="12" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="13" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="14" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 p-1 w-25"><img class="img-fluid" id="15" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="12" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="13" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="14" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
+              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="15" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
             </div>
       </ul>
     </div>

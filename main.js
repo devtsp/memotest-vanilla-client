@@ -10,16 +10,17 @@ function startGame() {
 	let clickCounter = { clicks: 0 };
 	const selections = [];
 	let totalMatches = { matches: 0 };
+	const ids = [];
 
 	$memoTestBacks.forEach(back => {
 		imageAssigner(back, imagePastEntries);
-		back.style.visibility = 'visible';
+		back.classList.remove('invisible');
 	});
 
-  $memoTestFront.forEach(front => {
-    front.style.visibility = 'visible'
+	$memoTestFront.forEach(front => {
+		front.classList.remove('invisible');
 		front.addEventListener('click', e =>
-			handleSelection(e, clickCounter, selections, totalMatches)
+			handleSelection(e, clickCounter, selections, totalMatches, ids)
 		);
 	});
 }
@@ -33,7 +34,7 @@ function imageAssigner(back, imagePastEntries) {
 		imageAssigner(back, imagePastEntries);
 	} else {
 		back.setAttribute('name', randomBackImg.match(/^[\w\d-_]+/));
-    back.style.backgroundImage = `url("./img/${randomBackImg}")`;    
+		back.style.backgroundImage = `url("./img/${randomBackImg}")`;
 	}
 }
 
@@ -69,8 +70,9 @@ function isDuplicated(currentEntry, pastEntries) {
 //===================================
 // USER INPUT SECTION MAIN HANDLER
 
-function handleSelection(e, clickCounter, selections, totalMatches) {
-	e.target.style.opacity = '0';
+function handleSelection(e, clickCounter, selections, totalMatches, ids) {
+	e.target.classList.add('invisible');
+	ids.push(e.target.id);
 	const cardName = e.target.parentNode.getAttribute('name');
 	clickCounter.clicks++;
 	selections.push(cardName);
@@ -82,34 +84,52 @@ function handleSelection(e, clickCounter, selections, totalMatches) {
 		}, 1000);
 		if (selections[0] === selections[1]) {
 			totalMatches.matches++;
-			handleMatch(selections);
+			handleMatch(selections, ids);
 		} else {
-			handleUnmatch();
+			handleUnmatch(ids);
 		}
 		clickCounter.clicks = 0;
 		selections.length = 0;
+		// reset borders
 	}
 	handleWin(totalMatches);
 }
 // HELPERS!! (GAME STATE)
 function handleMatch(selections) {
 	console.log('Match!!');
+	// document.querySelectorAll('#memotest img').forEach(card => {
+	// 	ids.includes(card.id) ? card.classList.add('border-success') : ids;
+	// });
 	const $matchedPair = document.querySelectorAll(`[name="${selections[0]}"]`);
+	$matchedPair.forEach(card => {
+		card.classList.remove('border-white');
+		card.classList.add('border-success');
+	});
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
-      matchedCard.style.visibility = 'hidden';
-      matchedCard.children[0].style.visibility = 'hidden';
-      matchedCard.children[0].style.opacity = '1';
+			matchedCard.classList.add('invisible');
+			matchedCard.children[0].classList.add('invisible');
+			$matchedPair.forEach(card => {
+				card.classList.remove('border-success');
+			});
 		});
 	}, 1000);
 }
 
-function handleUnmatch() {
+function handleUnmatch(ids) {
 	console.log('No match!');
 	const $fronts = document.querySelectorAll(`#memotest img`);
+	$fronts.forEach(front => {
+		if (ids.includes(front.id)) {
+			front.parentNode.classList.remove('border-white');
+			front.parentNode.classList.add('border-danger');
+		}
+	});
 	setTimeout(() => {
 		$fronts.forEach(front => {
-			front.style.opacity = '1';
+			front.classList.remove('invisible');
+			front.parentNode.classList.remove('border-danger');
+			ids.length = 0;
 		});
 	}, 1000);
 }
