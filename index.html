@@ -7,35 +7,34 @@
 		<title>Document</title>
 	</head>
 	<style>
+		@import url('./node_modules/bootstrap/dist/css/bootstrap.min.css');
+
 		body {
-			background-color: rgb(199, 199, 199);
+			background-color: rgb(255, 255, 255);
+			justify-content: center;
 		}
-		ul {
-			padding: 0;
-			width: 413px;
-		}
+
 		li {
+			list-style: none;
 			height: 100px;
 			width: 100px;
-			list-style: none;
-			display: inline-block;
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-color: white;
+			visibility: hidden;
+			display: inline-block;
 		}
 		#memotest img {
 			height: 100px;
 			width: 100px;
-      opacity: .7;
+			opacity: 0.7;
 		}
-    #memotest {
-      display: none;
-    }
 	</style>
 	<body>
-		<button id="shuffle">Shuffle</button>
-		<ul id="memotest">
+		<button id="shuffle" class="btn btn-primary">Shuffle</button>
+		<p id="message"></p>
+		<ul id="memotest" class="container">
 			<li><img id="0" src="img/questionmark.png" alt="questionmark" /></li>
 			<li><img id="1" src="img/questionmark.png" alt="questionmark" /></li>
 			<li><img id="2" src="img/questionmark.png" alt="questionmark" /></li>

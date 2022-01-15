@@ -1,111 +1,123 @@
-const $memoTest = document.querySelector('#memotest');
-const memoTestCards = [...$memoTest.children];
-console.log('Reloaded page!');
+const shuffleButton = document.querySelector('#shuffle');
+document.querySelector('#shuffle').onclick = startGame;
 
-function memoTestRandomDisplay() {
-	$memoTest.style.display = 'block';
-	console.log('Shuffled new sort of cards!!');
+function startGame() {
+	console.log('Game started!');
+	const $memoTest = document.querySelector('#memotest');
+	const $memoTestBacks = $memoTest.querySelectorAll('li');
+	const $memoTestFront = $memoTest.querySelectorAll('img');
+	const imagePastEntries = {};
+	let clickCounter = { clicks: 0 };
+	const selections = [];
+	let totalMatches = { matches: 0 };
 
-	const imageEntries = {};
+	$memoTestBacks.forEach(back => {
+		imageAssigner(back, imagePastEntries);
+		back.style.visibility = 'visible';
+		back.children[0].style.visibility = 'visible';
+	});
 
-	function imageRandomizer() {
-		const imageReferences = [
-			'335.jfif',
-			'explorer.jfif',
-			'iceman.jfif',
-			'jaguar.jfif',
-			'lp.jfif',
-			'sg.jfif',
-			'strat.jfif',
-			'tele.jfif',
-		];
-		const randomNumber = Math.floor(Math.random() * 8);
-		const randomImage = imageReferences[randomNumber];
-		return randomImage;
-	}
-
-	function isDuplicated(randomImage) {
-		if (imageEntries[randomImage] === 2) {
-			return true;
-		} else if (imageEntries[randomImage] === 1) {
-			imageEntries[randomImage]++;
-			return false;
-		} else {
-			imageEntries[randomImage] = 1;
-			return false;
-		}
-	}
-
-	function imageAssigner(card) {
-		const selectImg = imageRandomizer();
-		const duplicated = isDuplicated(selectImg);
-		if (duplicated) {
-			imageAssigner(card);
-		} else {
-			card.setAttribute('name', selectImg.match(/^[\w\d-_]+/));
-			card.style.backgroundImage = `url("./img/${selectImg}")`;
-		}
-	}
-
-	memoTestCards.forEach(card => {
-		imageAssigner(card);
+	$memoTestFront.forEach(front => {
+		front.addEventListener('click', e =>
+			handleSelection(e, clickCounter, selections, totalMatches)
+		);
 	});
 }
 
-document.querySelector('#shuffle').onclick = memoTestRandomDisplay;
+//==============================
+// SHUFFLE AND DISPLAY CARDS PROCEDURAL FUNCTION:
+function imageAssigner(back, imagePastEntries) {
+	const randomBackImg = imageRandomizer();
+	const duplicated = isDuplicated(randomBackImg, imagePastEntries);
+	if (duplicated) {
+		imageAssigner(back, imagePastEntries);
+	} else {
+		back.setAttribute('name', randomBackImg.match(/^[\w\d-_]+/));
+		back.style.backgroundImage = `url("./img/${randomBackImg}")`;
+	}
+}
 
-memoTestCards.forEach(card => {
-  card.children[0].addEventListener('click', e => handleSelection(e));
-});
+// HELPERS!!
+function imageRandomizer() {
+	const imageReferences = [
+		'335.jfif',
+		'explorer.jfif',
+		'iceman.jfif',
+		'jaguar.jfif',
+		'lp.jfif',
+		'sg.jfif',
+		'strat.jfif',
+		'tele.jfif',
+	];
+	const randomNumber = Math.floor(Math.random() * 8);
+	const randomImage = imageReferences[randomNumber];
+	return randomImage;
+}
 
+function isDuplicated(currentEntry, pastEntries) {
+	if (pastEntries[currentEntry] === 2) {
+		return true;
+	} else if (pastEntries[currentEntry] === 1) {
+		pastEntries[currentEntry]++;
+		return false;
+	} else {
+		pastEntries[currentEntry] = 1;
+		return false;
+	}
+}
 
-let clickCounter = 0;
-const selections = [];
-let totalMatches = 0;
+//===================================
+// USER INPUT SECTION MAIN HANDLER
 
-function handleSelection(e) {
-	e.target.style.display = 'none';
+function handleSelection(e, clickCounter, selections, totalMatches) {
+	e.target.style.visibility = 'hidden';
 	const cardName = e.target.parentNode.getAttribute('name');
-	clickCounter++;
+	clickCounter.clicks++;
 	selections.push(cardName);
-	console.log(`Card revealed: ${cardName}
-  Selections made: ${clickCounter}
-  Previous cards: ${selections}`);
-	if (clickCounter === 2) {
+	console.log(`Guitar found: ${cardName}`);
+	if (clickCounter.clicks === 2) {
+		document.body.style.pointerEvents = 'none';
+		setTimeout(() => {
+			document.body.style.pointerEvents = 'all';
+		}, 1000);
 		if (selections[0] === selections[1]) {
+			totalMatches.matches++;
 			handleMatch(selections);
 		} else {
 			handleUnmatch();
 		}
-		clickCounter = 0;
+		clickCounter.clicks = 0;
 		selections.length = 0;
-  }
-  handleWin()
+	}
+	handleWin(totalMatches);
 }
-
+// HELPERS!! (GAME STATE)
 function handleMatch(selections) {
-	totalMatches++;
-	console.log(`Match!! Total matches: ${totalMatches}`);
+	console.log('Match!!');
 	const $matchedPair = document.querySelectorAll(`[name="${selections[0]}"]`);
 	setTimeout(() => {
-		$matchedPair.forEach(card => {
-			card.style.visibility = 'hidden';
+		$matchedPair.forEach(matchedCard => {
+			matchedCard.style.visibility = 'hidden';
+			matchedCard.parentNode.style.visibility = 'hidden';
 		});
 	}, 1000);
 }
 
 function handleUnmatch() {
 	console.log('No match!');
+	const $fronts = document.querySelectorAll(`#memotest img`);
 	setTimeout(() => {
-		memoTestCards.forEach(card => {
-			card.children[0].style.display = 'inline-block';
+		$fronts.forEach(front => {
+			front.style.visibility = 'visible';
 		});
 	}, 1000);
 }
 
-function handleWin() {
-  if (totalMatches === 8) {
-    console.log('Congrats!! you win the game!')
-    setTimeout(() => { history.go() }, 2000)
-  }
+function handleWin(totalMatches) {
+	if (totalMatches.matches === 8) {
+		console.log('Congrats!! you win the game!');
+		setTimeout(() => {
+			history.go();
+		}, 2000);
+	}
 }
