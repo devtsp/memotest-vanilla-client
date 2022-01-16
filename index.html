@@ -8,48 +8,90 @@
 	</head>
 	<style>
 		@import url('./node_modules/bootstrap/dist/css/bootstrap.min.css');
+    body{
+      background-color: rgb(235, 235, 235);
+    }
+    * { 
+      letter-spacing: .04em;
+      padding: 0;
+    }
+    .color-1 {
+      background-color: rgb(155, 216, 155);
+    }
+    img {
+      opacity: .8;
+    }
+
 		li {
+      background: transparent;
 			list-style: none;
+      background-clip: content-box;
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
-			background-color: white;
-      text-align: center;
       cursor: pointer;
 		}
-    ul {
-      max-height: 80vh;
-    }
 	</style>
 	<body>
-		<div class="d-flex flex-column align-items-center p-1">
-      <button id="shuffle" class="btn bg-dark bg-gradient border border-2 rounded text-white w-100 mb-1">Shuffle</button>
-
-      <ul id="memotest" class="container p-0">
-        <div class="row g-0" >
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="0" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="1" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="2" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="3" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-            </div>
-        <div class="row g-0">
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="4" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="5" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="6" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="7" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-            </div>
-            <div class="row g-0">
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="8" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="9" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="10" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="11" tabindex="0"  src="img/questionmark.png" alt="questionmark" /></li>
-            </div>
-        <div class="row g-0">
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="12" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="13" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="14" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-              <li class="col-3 w-25 border border-white border-3"><img class="img-fluid" id="15" tabindex="0" src="img/questionmark.png" alt="questionmark" /></li>
-            </div>
+		<div class="d-flex flex-column align-items-center p-1 m-2">
+      <button class="color-1 btn rounded-3 mb-2" id="shuffle">Shuffle Cards</button>
+      <ul class="container" id="memotest">
+        <div class="row g-0 h-25" >
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+        </div>
+        <div class="row g-0 h-25" >
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+        </div>
+        <div class="row g-0 h-25" >
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+        </div>
+        <div class="row g-0 h-25" >
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+          <div class="aux d-inline-block col-3">
+            <li class="m-1 border-2 rounded-3"><img class="img-fluid"/></li>
+          </div>
+        </div>
       </ul>
     </div>
 		<script src="main.js"></script>
