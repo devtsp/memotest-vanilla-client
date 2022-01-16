@@ -1,4 +1,3 @@
-const shuffleButton = document.querySelector('#shuffle');
 document.querySelector('#shuffle').onclick = startGame;
 
 function startGame() {
