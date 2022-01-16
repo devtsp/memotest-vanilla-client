@@ -1,16 +1,18 @@
-document.querySelector('#shuffle').onclick = startGame;
+document.onload = initialState();
 
-function startGame() {
+function initialState() {
 	const clickCounter = { clicks: 0 };
 	const cardsSelected = [];
 	const selectionsIDs = [];
 	const timerCount = { seconds: 0 };
 	const triesCount = { tries: 0 };
 	const totalMatches = { matches: 0 };
+	document.querySelector('#shuffle').onclick = () => {
+		location.reload();
+	};
 	document.querySelector('#win').classList.replace('shown', 'hidden');
 
 	startStats(timerCount, triesCount, totalMatches);
-
 	backSidesShuffler();
 	frontSidesShuffler(
 		clickCounter,
@@ -62,16 +64,19 @@ function frontSidesShuffler(
 }
 
 function startStats(timerCount, triesCount, totalMatches) {
+	// Awfull solution to clear past intervals. I tried EVERYTHING
+	for (let i = 0; i < 5; i++) {
+		clearInterval(i);
+	}
 	const $tries = document.querySelector('#tries');
-	$tries.classList.remove('hidden');
-	$tries.innerText = `Tries: ${triesCount.tries}`;
 	const $timer = document.querySelector('#timer');
+	$tries.classList.remove('hidden');
 	$timer.classList.remove('hidden');
-	$timer.innerText = `Timer: ${timerCount.seconds}s`;
-	let intervalID = setInterval(() => {
-		const $timer = document.querySelector('#timer');
+	$tries.innerText = `${triesCount.tries}`;
+	$timer.innerText = `${timerCount.seconds}`;
+	const intervalID = setInterval(() => {
 		timerCount.seconds++;
-		$timer.innerText = `Timer: ${timerCount.seconds}s`;
+		$timer.innerText = `${timerCount.seconds}`;
 		if (totalMatches.matches === 8) {
 			clearInterval(intervalID);
 		}
@@ -131,7 +136,7 @@ function handleClick(
 	changeState(e, clickCounter, cardsSelected, selectionsIDs);
 	if (clickCounter.clicks === 2) {
 		triesCount.tries++;
-		document.querySelector('#tries').innerText = `Tries: ${triesCount.tries}`;
+		document.querySelector('#tries').innerText = `${triesCount.tries}`;
 		clickDisabler();
 		matchOrMismatch(clickCounter, cardsSelected, selectionsIDs, totalMatches);
 	}
@@ -171,19 +176,22 @@ function matchOrMismatch(
 
 function handleMatch(cardsSelected, totalMatches) {
 	totalMatches.matches++;
-	console.log(totalMatches.matches);
 	const $matchedPair = document.querySelectorAll(
 		`[name="${cardsSelected[0]}"]`
 	);
 	$matchedPair.forEach(card => {
-		card.classList.add('border', 'border-success');
-	});
+		card.children[1].classList.replace('hidden', 'shown');
+  });
+  const $progress = document.querySelector('#matches');
+  const percentage = totalMatches.matches * 100 / 8
+  $progress.ariaValueNow = `${percentage}%`
+  $progress.style.width = `${percentage}%`
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
 			matchedCard.classList.add('invisible');
 			matchedCard.children[0].classList.add('invisible');
 			$matchedPair.forEach(card => {
-				card.classList.remove('border', 'border-success');
+				card.children[1].classList.replace('shown', 'hidden');
 			});
 		});
 	}, 1000);
@@ -193,13 +201,13 @@ function handleMismatch(selectionsIDs) {
 	const $cards = document.querySelectorAll(`#memotest li`);
 	$cards.forEach(card => {
 		if (selectionsIDs.includes(card.id)) {
-			card.classList.add('border', 'border-danger');
+			card.children[2].classList.replace('hidden', 'shown');
 		}
 	});
 	setTimeout(() => {
 		$cards.forEach(card => {
 			card.children[0].classList.remove('invisible');
-			card.classList.remove('border', 'border-danger');
+			card.children[2].classList.replace('shown', 'hidden');
 		});
 	}, 1000);
 }
@@ -209,7 +217,7 @@ function checkWin(totalMatches, triesCount, timerCount) {
 	if (totalMatches.matches === 8) {
 		setTimeout(() => {
 			$message.classList.replace('hidden', 'shown');
-			$message.innerText = `Congratulations! You took ${triesCount.tries} tries and ${timerCount.seconds} seconds to solve the puzzle. Well done!`;
+			$message.innerText = `Congratulations! \n You took ${triesCount.tries} tries\n and ${timerCount.seconds} seconds \nto solve the puzzle.\n Well done!`;
 		}, 1000);
 	}
 }
