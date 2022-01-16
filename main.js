@@ -1,9 +1,9 @@
 document.querySelector('#shuffle').onclick = startGame;
 
 function startGame() {
-	let clickCounter = { clicks: 0 };
+	const clickCounter = { clicks: 0 };
 	const cardsSelected = [];
-	let totalMatches = { matches: 0 };
+	const totalMatches = { matches: 0 };
 	const selectionsIDs = [];
 
 	backSidesShuffler(totalMatches);
