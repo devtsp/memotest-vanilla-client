@@ -1,29 +1,36 @@
-/* @import url('./node_modules/bootstrap/dist/css/bootstrap.min.css'); */
-body{
-  background-color: rgb(235, 235, 235);
+body {
+	background-color: #fff;
 }
-* { 
-  letter-spacing: .04em;
-  padding: 0;
+.app {
+	height: 100vh;
+}
+ul {
+	padding: 0;
 }
 .color-1 {
-  background-color: rgb(155, 216, 155);
+	background-color: #9bd89b;
 }
-img {
-  opacity: .8;
+.progressColor1 {
+	background-color: #9bd89b;
 }
-
+.borderWrong {
+	border: 3px solid #d36246;
+}
+.borderSuccess {
+	border: 3px solid rgba(75, 211, 104, 0.568);
+}
 li {
-  list-style: none;
-  background-clip: content-box;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
+	list-style: none;
+	background-clip: content-box;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
 }
 .hidden {
-  display: none;
+	display: none;
 }
 .shown {
-  display: inline-block;
+	display: inline-block;
 }
+/*# sourceMappingURL=style.css.map */
