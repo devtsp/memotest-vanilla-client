@@ -3,11 +3,21 @@ document.querySelector('#shuffle').onclick = startGame;
 function startGame() {
 	const clickCounter = { clicks: 0 };
 	const cardsSelected = [];
-	const totalMatches = { matches: 0 };
 	const selectionsIDs = [];
+	const timerCount = { seconds: 0 };
+	const triesCount = { tries: 0 };
+	const totalMatches = { matches: 0 };
 
-	backSidesShuffler(totalMatches);
-	frontSidesShuffler(clickCounter, cardsSelected, totalMatches, selectionsIDs);
+	startStats(timerCount, triesCount, totalMatches);
+
+	backSidesShuffler();
+	frontSidesShuffler(
+		clickCounter,
+		cardsSelected,
+		totalMatches,
+		selectionsIDs,
+		triesCount
+	);
 }
 
 function backSidesShuffler() {
@@ -23,15 +33,43 @@ function backSidesShuffler() {
 	});
 }
 
-function frontSidesShuffler(clickCounter, cardsSelected, totalMatches, selectionsIDs) {
+function frontSidesShuffler(
+	clickCounter,
+	cardsSelected,
+	totalMatches,
+	selectionsIDs,
+	triesCount
+) {
 	const $cardFronts = document.querySelectorAll('#memotest img');
 	$cardFronts.forEach(card => {
 		card.classList.remove('invisible');
 		card.src = './img/questionmark.jpg';
 		card.addEventListener('click', e =>
-			handleClick(e, clickCounter, cardsSelected, totalMatches, selectionsIDs)
+			handleClick(
+				e,
+				clickCounter,
+				cardsSelected,
+				totalMatches,
+				selectionsIDs,
+				triesCount
+			)
 		);
 	});
+}
+
+function startStats(timerCount, triesCount, totalMatches) {
+	document.querySelector('#tries').innerText = `Tries: ${triesCount.tries}`;
+	const $timer = document.querySelector('#timer');
+	$timer.classList.add('d-inline');
+	$timer.innerText = `Timer: ${timerCount.seconds}s`;
+	let intervalID = setInterval(() => {
+		const $timer = document.querySelector('#timer');
+		timerCount.seconds++;
+		$timer.innerText = `Timer: ${timerCount.seconds}s`;
+		if (totalMatches.matches === 2) {
+			clearInterval(intervalID);
+		}
+	}, 1000);
 }
 
 // SHUFFLE PROCEDURAL FUNCTION:
@@ -75,11 +113,20 @@ function isDuplicated(currentEntry, pastEntries) {
 }
 
 // USER INPUT PROCEDURAL
-function handleClick(e, clickCounter, cardsSelected, totalMatches, selectionsIDs) {
+function handleClick(
+	e,
+	clickCounter,
+	cardsSelected,
+	totalMatches,
+	selectionsIDs,
+	triesCount
+) {
 	changeState(e, clickCounter, cardsSelected, selectionsIDs);
 	if (clickCounter.clicks === 2) {
+		triesCount.tries++;
+		document.querySelector('#tries').innerText = `Tries: ${triesCount.tries}`;
 		clickDisabler();
-		matchOrMismatch(clickCounter, cardsSelected, selectionsIDs);
+		matchOrMismatch(clickCounter, cardsSelected, selectionsIDs, totalMatches);
 	}
 	checkWin(totalMatches);
 }
@@ -99,9 +146,14 @@ function clickDisabler() {
 	}, 1000);
 }
 
-function matchOrMismatch(clickCounter, cardsSelected, selectionsIDs) {
+function matchOrMismatch(
+	clickCounter,
+	cardsSelected,
+	selectionsIDs,
+	totalMatches
+) {
 	if (cardsSelected[0] === cardsSelected[1]) {
-		handleMatch(cardsSelected, selectionsIDs);
+		handleMatch(cardsSelected, totalMatches);
 	} else {
 		handleMismatch(selectionsIDs);
 	}
@@ -112,7 +164,10 @@ function matchOrMismatch(clickCounter, cardsSelected, selectionsIDs) {
 
 function handleMatch(cardsSelected, totalMatches) {
 	totalMatches.matches++;
-	const $matchedPair = document.querySelectorAll(`[name="${cardsSelected[0]}"]`);
+	console.log(totalMatches.matches);
+	const $matchedPair = document.querySelectorAll(
+		`[name="${cardsSelected[0]}"]`
+	);
 	$matchedPair.forEach(card => {
 		card.classList.add('border', 'border-success');
 	});
@@ -144,8 +199,9 @@ function handleMismatch(selectionsIDs) {
 
 function checkWin(totalMatches) {
 	if (totalMatches.matches === 8) {
+		console.log('WIN!!');
 		setTimeout(() => {
 			history.go();
-		}, 2000);
+		}, 4000);
 	}
 }
