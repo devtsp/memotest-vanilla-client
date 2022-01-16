@@ -21,3 +21,9 @@ li {
   background-position: center;
   cursor: pointer;
 }
+.hidden {
+  display: none;
+}
+.shown {
+  display: inline-block;
+}
