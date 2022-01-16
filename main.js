@@ -7,6 +7,7 @@ function startGame() {
 	const timerCount = { seconds: 0 };
 	const triesCount = { tries: 0 };
 	const totalMatches = { matches: 0 };
+	document.querySelector('#win').classList.replace('shown', 'hidden');
 
 	startStats(timerCount, triesCount, totalMatches);
 
@@ -16,7 +17,8 @@ function startGame() {
 		cardsSelected,
 		totalMatches,
 		selectionsIDs,
-		triesCount
+		triesCount,
+		timerCount
 	);
 }
 
@@ -38,7 +40,8 @@ function frontSidesShuffler(
 	cardsSelected,
 	totalMatches,
 	selectionsIDs,
-	triesCount
+	triesCount,
+	timerCount
 ) {
 	const $cardFronts = document.querySelectorAll('#memotest img');
 	$cardFronts.forEach(card => {
@@ -51,22 +54,25 @@ function frontSidesShuffler(
 				cardsSelected,
 				totalMatches,
 				selectionsIDs,
-				triesCount
+				triesCount,
+				timerCount
 			)
 		);
 	});
 }
 
 function startStats(timerCount, triesCount, totalMatches) {
-	document.querySelector('#tries').innerText = `Tries: ${triesCount.tries}`;
+	const $tries = document.querySelector('#tries');
+	$tries.classList.remove('hidden');
+	$tries.innerText = `Tries: ${triesCount.tries}`;
 	const $timer = document.querySelector('#timer');
-	$timer.classList.add('d-inline');
+	$timer.classList.remove('hidden');
 	$timer.innerText = `Timer: ${timerCount.seconds}s`;
 	let intervalID = setInterval(() => {
 		const $timer = document.querySelector('#timer');
 		timerCount.seconds++;
 		$timer.innerText = `Timer: ${timerCount.seconds}s`;
-		if (totalMatches.matches === 2) {
+		if (totalMatches.matches === 8) {
 			clearInterval(intervalID);
 		}
 	}, 1000);
@@ -119,7 +125,8 @@ function handleClick(
 	cardsSelected,
 	totalMatches,
 	selectionsIDs,
-	triesCount
+	triesCount,
+	timerCount
 ) {
 	changeState(e, clickCounter, cardsSelected, selectionsIDs);
 	if (clickCounter.clicks === 2) {
@@ -128,7 +135,7 @@ function handleClick(
 		clickDisabler();
 		matchOrMismatch(clickCounter, cardsSelected, selectionsIDs, totalMatches);
 	}
-	checkWin(totalMatches);
+	checkWin(totalMatches, triesCount, timerCount);
 }
 
 function changeState(e, clickCounter, cardsSelected, selectionsIDs) {
@@ -197,11 +204,12 @@ function handleMismatch(selectionsIDs) {
 	}, 1000);
 }
 
-function checkWin(totalMatches) {
+function checkWin(totalMatches, triesCount, timerCount) {
+	const $message = document.querySelector('#win');
 	if (totalMatches.matches === 8) {
-		console.log('WIN!!');
 		setTimeout(() => {
-			history.go();
-		}, 4000);
+			$message.classList.replace('hidden', 'shown');
+			$message.innerText = `Congratulations! You took ${triesCount.tries} tries and ${timerCount.seconds} seconds to solve the puzzle. Well done!`;
+		}, 1000);
 	}
 }

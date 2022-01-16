@@ -11,18 +11,20 @@
 	<body>
 		<div class="d-flex flex-column align-items-center p-1 m-2">
 
-      <div>
-        <button class="col color-1 btn rounded-3 mb-2" id="shuffle">
-          Shuffle Cards
-        </button>
-      </div>
-
+      <button class="col color-1 btn rounded-3 mb-2" id="shuffle">
+        Shuffle Cards
+      </button>
       
-
-      <div>
-        <p id="timer" class="alert-info px-3"></p>
-        <p id="tries" class="alert-info px-3"></p>
+      <div class="row mb-1">
+        <div>
+          <p id="timer" class="alert-info hidden p-2"></p>
+        </div>
+        <div>
+          <p id="tries" class=" alert-info hidden p-2"></p>
+        </div>
       </div>
+
+      <p id="win" class="alert-success hidden p-3 mb-2 w-75"></p>
 
       <ul class="container" id="memotest">
         <div class="row g-0 h-25" >
