@@ -1,4 +1,6 @@
-document.onload = initialState();
+window.addEventListener('DOMContentLoaded', () => {
+	initialState();
+});
 
 function initialState() {
 	const clickCounter = { clicks: 0 };
@@ -10,7 +12,8 @@ function initialState() {
 	document.querySelector('#shuffle').onclick = () => {
 		location.reload();
 	};
-	document.querySelector('#win').classList.replace('shown', 'hidden');
+	document.querySelector('#win').classList.add('none');
+	document.querySelector('#progress').classList.remove('none');
 
 	startStats(timerCount, triesCount, totalMatches);
 	backSidesShuffler();
@@ -30,7 +33,7 @@ function backSidesShuffler() {
 	const $cardBacks = document.querySelectorAll('#memotest li');
 	$cardBacks.forEach(back => {
 		imageAssigner(back, imagePastEntries);
-		back.classList.remove('invisible');
+		back.classList.remove('hidden');
 		back.style.backgroundColor = 'white';
 		back.id = ++id;
 		back.tabIndex = 0;
@@ -47,7 +50,7 @@ function frontSidesShuffler(
 ) {
 	const $cardFronts = document.querySelectorAll('#memotest img');
 	$cardFronts.forEach(card => {
-		card.classList.remove('invisible');
+		card.classList.remove('hidden');
 		card.src = './img/questionmark.jpg';
 		card.addEventListener('click', e =>
 			handleClick(
@@ -70,8 +73,6 @@ function startStats(timerCount, triesCount, totalMatches) {
 	}
 	const $tries = document.querySelector('#tries');
 	const $timer = document.querySelector('#timer');
-	$tries.classList.remove('hidden');
-	$timer.classList.remove('hidden');
 	$tries.innerText = `${triesCount.tries}`;
 	$timer.innerText = `${timerCount.seconds}`;
 	const intervalID = setInterval(() => {
@@ -144,9 +145,10 @@ function handleClick(
 }
 
 function changeState(e, clickCounter, cardsSelected, selectionsIDs) {
-	clickCounter.clicks++;
 	e.target.classList.add('hidden');
+  clickCounter.clicks++;
 	selectionsIDs.push(e.target.parentNode.id);
+  console.log(selectionsIDs)
 	const cardName = e.target.parentNode.getAttribute('name');
 	cardsSelected.push(cardName);
 }
@@ -164,14 +166,13 @@ function matchOrMismatch(
 	selectionsIDs,
 	totalMatches
 ) {
-	if (cardsSelected[0] === cardsSelected[1]) {
+	if (cardsSelected[0] === cardsSelected[1] && selectionsIDs[0] !== selectionsIDs[1]) {
 		handleMatch(cardsSelected, totalMatches);
 	} else {
 		handleMismatch(selectionsIDs);
 	}
 	clickCounter.clicks = 0;
 	cardsSelected.length = 0;
-	selectionsIDs.length = 0;
 }
 
 function handleMatch(cardsSelected, totalMatches) {
@@ -185,18 +186,18 @@ function handleMatch(cardsSelected, totalMatches) {
 	$progress.style.width = `${percentage}%`;
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
-			matchedCard.style.display = 'none';
+			matchedCard.classList.add('hidden');
 		});
 	}, 1000);
 }
 
 function handleMismatch(selectionsIDs) {
-  console.log(selectionsIDs)
 	const $cards = document.querySelectorAll(`#memotest li`);
 	setTimeout(() => {
 		$cards.forEach(card => {
 			if (selectionsIDs.includes(card.id)) {
-				card.cildren[0].classList.replace('hidden', 'shown');
+				card.children[0].classList.remove('hidden');
+				selectionsIDs.splice(selectionsIDs.indexOf(card.id), 1);
 			}
 		});
 	}, 1000);
@@ -206,8 +207,14 @@ function checkWin(totalMatches, triesCount, timerCount) {
 	const $message = document.querySelector('#win');
 	if (totalMatches.matches === 8) {
 		setTimeout(() => {
-			$message.classList.replace('hidden', 'shown');
-			$message.innerText = `Congratulations! \n You took ${triesCount.tries} tries\n and ${timerCount.seconds} seconds \nto solve the puzzle.\n Well done!`;
+			$message.classList.remove('none');
+			document.querySelector('#progress').classList.add('none');
+			$message.querySelector(
+				'#wintries'
+			).innerText = `${triesCount.tries} tries`;
+			$message.querySelector(
+				'#winseconds'
+			).innerText = `${timerCount.seconds} seconds`;
 		}, 1000);
 	}
 }
