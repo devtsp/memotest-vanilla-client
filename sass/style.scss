@@ -1,0 +1,41 @@
+// @import '../node_modules/bootstrap/scss/bootstrap.scss';
+// @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css');
+
+body {
+	background-color: rgb(255, 255, 255);
+}
+.app {
+	height: 100vh;
+}
+ul {
+	padding: 0;
+}
+.color-1 {
+	background-color: rgb(155, 216, 155);
+}
+.progressColor1 {
+	background-color: rgb(155, 216, 155);
+}
+
+.borderWrong {
+	border: 3px solid rgb(211, 98, 70);
+}
+.borderSuccess {
+	border: 3px solid rgba(75, 211, 104, 0.568);
+}
+
+li {
+	list-style: none;
+	background-clip: content-box;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
+.shown {
+	display: inline-block;
+}
+
