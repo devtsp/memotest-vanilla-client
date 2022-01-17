@@ -4,10 +4,6 @@ body {
 .app {
 	height: 100vh;
 }
-* {
-  margin: 0;
-  padding: 0;
-}
 ul {
 	padding: 0;
 }
@@ -24,8 +20,6 @@ ul {
 	border: 3px solid rgba(75, 211, 104, 0.568);
 }
 li {
-  height: 8rem;
-  width: 8rem;
 	list-style: none;
 	background-clip: content-box;
 	background-size: contain;
@@ -36,21 +30,17 @@ li {
 .hidden {
 	opacity: 0;
 }
-img {
-	opacity: 0.5;
-}
 .shown {
 	opacity: 1;
 }
+img {
+	opacity: 0.5;
+}
 
-.check {
-  position: absolute;
-  top: 50%;
-  left: 50%
+.none {
+  display: none;
 }
-.cross {
-  position: absolute;
-  top: 33%;
-  left: 33%
+
+.font-big {
+  font-size: 2rem;
 }
-/*# sourceMappingURL=style.css.map */
