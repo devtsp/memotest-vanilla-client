@@ -145,7 +145,7 @@ function handleClick(
 
 function changeState(e, clickCounter, cardsSelected, selectionsIDs) {
 	clickCounter.clicks++;
-	e.target.classList.add('invisible');
+	e.target.classList.add('hidden');
 	selectionsIDs.push(e.target.parentNode.id);
 	const cardName = e.target.parentNode.getAttribute('name');
 	cardsSelected.push(cardName);
@@ -179,35 +179,25 @@ function handleMatch(cardsSelected, totalMatches) {
 	const $matchedPair = document.querySelectorAll(
 		`[name="${cardsSelected[0]}"]`
 	);
-	$matchedPair.forEach(card => {
-		card.children[1].classList.replace('hidden', 'shown');
-  });
-  const $progress = document.querySelector('#matches');
-  const percentage = totalMatches.matches * 100 / 8
-  $progress.ariaValueNow = `${percentage}%`
-  $progress.style.width = `${percentage}%`
+	const $progress = document.querySelector('#matches');
+	const percentage = (totalMatches.matches * 100) / 8;
+	$progress.ariaValueNow = `${percentage}%`;
+	$progress.style.width = `${percentage}%`;
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
-			matchedCard.classList.add('invisible');
-			matchedCard.children[0].classList.add('invisible');
-			$matchedPair.forEach(card => {
-				card.children[1].classList.replace('shown', 'hidden');
-			});
+			matchedCard.style.display = 'none';
 		});
 	}, 1000);
 }
 
 function handleMismatch(selectionsIDs) {
+  console.log(selectionsIDs)
 	const $cards = document.querySelectorAll(`#memotest li`);
-	$cards.forEach(card => {
-		if (selectionsIDs.includes(card.id)) {
-			card.children[2].classList.replace('hidden', 'shown');
-		}
-	});
 	setTimeout(() => {
 		$cards.forEach(card => {
-			card.children[0].classList.remove('invisible');
-			card.children[2].classList.replace('shown', 'hidden');
+			if (selectionsIDs.includes(card.id)) {
+				card.cildren[0].classList.replace('hidden', 'shown');
+			}
 		});
 	}, 1000);
 }

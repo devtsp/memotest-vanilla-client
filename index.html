@@ -26,75 +26,117 @@
         </div>
         <div class="d-flex align-items-center">
           <i class="bi bi-question-circle px-3" style="font-size: 2rem; color: cornflowerblue;"></i>
-          Attempts<p id="tries" class="text-center fs-2 px-3 m-0"></p>
+          Attempts
+          <p id="tries" class="text-center fs-2 d-inline px-3 m-0"></p>
         </div>
       </div>
 
       <div class="container position-relative">
-        <p id="win" class="alert-success p-4 text-center fs-6 position-absolute top-50 start-50 translate-middle hidden"></p>
+
+        
         <ul id="memotest">
-          <div class="row g-0" >
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle shown" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+
+          <p id="win" class="p-3 text-center position-absolute top-50 start-50 translate-middle hidden"></p>
+
+          <div class="row g-0">
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-          </div>
-          <div class="row g-0" >
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
           </div>
-          <div class="row g-0" >
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+          <div class="row g-0">
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-          </div>
-          <div class="row g-0" >
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
-            </div>
-            <div class="aux d-inline-block col-3 p-0">
-              <li class="m-1 position-relative"><img class="img-fluid"/><i class="bi bi-hand-thumbs-up-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(75, 211, 104, 0.568);"></i><i class="bi bi-hand-thumbs-down-fill position-absolute top-50 start-50 translate-middle hidden" style="font-size: 4rem; color: rgba(211, 95, 75, 0.568);"></i></li>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
             </div>
           </div>
+          <div class="row g-0">
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1 position-relative">
+                <img class="img-fluid"/>
+              </li>
+            </div>
+          </div>
+
         </ul>
+
         <div class="progress">
           <div id="matches" role="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" class="progress-bar progress-bar-striped progress-bar-animated progressColor1"></div>
         </div>
+
       </div>
+
     </div>
+
 		<script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
