@@ -3,6 +3,8 @@ body {
 }
 .app {
 	height: 100vh;
+  max-width: 576px;
+  margin: 0 auto;
 }
 ul {
 	padding: 0;
