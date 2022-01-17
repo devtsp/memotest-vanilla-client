@@ -30,6 +30,9 @@ li {
 .hidden {
 	display: none;
 }
+img {
+	opacity: 0.5;
+}
 .shown {
 	display: inline-block;
 }
