@@ -77,11 +77,11 @@ function startStats(timerCount, triesCount, totalMatches) {
 	$timer.innerText = `${timerCount.seconds}`;
 	const intervalID = setInterval(() => {
 		timerCount.seconds++;
-		$timer.innerText = `${timerCount.seconds}`;
+		$timer.innerText = `${timerCount.seconds / 10}`;
 		if (totalMatches.matches === 8) {
 			clearInterval(intervalID);
 		}
-	}, 1000);
+	}, 100);
 }
 
 // SHUFFLE PROCEDURAL FUNCTION:
@@ -146,9 +146,8 @@ function handleClick(
 
 function changeState(e, clickCounter, cardsSelected, selectionsIDs) {
 	e.target.classList.add('hidden');
-  clickCounter.clicks++;
+	clickCounter.clicks++;
 	selectionsIDs.push(e.target.parentNode.id);
-  console.log(selectionsIDs)
 	const cardName = e.target.parentNode.getAttribute('name');
 	cardsSelected.push(cardName);
 }
@@ -157,7 +156,7 @@ function clickDisabler() {
 	document.body.style.pointerEvents = 'none';
 	setTimeout(() => {
 		document.body.style.pointerEvents = 'all';
-	}, 1000);
+	}, 300);
 }
 
 function matchOrMismatch(
@@ -166,16 +165,18 @@ function matchOrMismatch(
 	selectionsIDs,
 	totalMatches
 ) {
-	if (cardsSelected[0] === cardsSelected[1] && selectionsIDs[0] !== selectionsIDs[1]) {
-		handleMatch(cardsSelected, totalMatches);
+	if (
+		cardsSelected[0] === cardsSelected[1] &&
+		selectionsIDs[0] !== selectionsIDs[1]
+	) {
+		handleMatch(cardsSelected, totalMatches, selectionsIDs);
 	} else {
-		handleMismatch(selectionsIDs);
+		handleMismatch(cardsSelected, selectionsIDs);
 	}
 	clickCounter.clicks = 0;
-	cardsSelected.length = 0;
 }
 
-function handleMatch(cardsSelected, totalMatches) {
+function handleMatch(cardsSelected, totalMatches, selectionsIDs) {
 	totalMatches.matches++;
 	const $matchedPair = document.querySelectorAll(
 		`[name="${cardsSelected[0]}"]`
@@ -187,20 +188,31 @@ function handleMatch(cardsSelected, totalMatches) {
 	setTimeout(() => {
 		$matchedPair.forEach(matchedCard => {
 			matchedCard.classList.add('hidden');
-		});
-	}, 1000);
+    });
+    for (; selectionsIDs.length > 0; ) {
+      selectionsIDs.pop();
+    }
+    for (; cardsSelected.length > 0; ) {
+			cardsSelected.pop();
+    }
+	}, 300);
 }
 
-function handleMismatch(selectionsIDs) {
+function handleMismatch(cardsSelected, selectionsIDs) {
 	const $cards = document.querySelectorAll(`#memotest li`);
 	setTimeout(() => {
 		$cards.forEach(card => {
 			if (selectionsIDs.includes(card.id)) {
 				card.children[0].classList.remove('hidden');
-				selectionsIDs.splice(selectionsIDs.indexOf(card.id), 1);
 			}
 		});
-	}, 1000);
+		for (; selectionsIDs.length > 0; ) {
+			selectionsIDs.pop();
+    }
+    for (; cardsSelected.length > 0; ) {
+			cardsSelected.pop();
+		}
+	}, 300);
 }
 
 function checkWin(totalMatches, triesCount, timerCount) {
@@ -214,7 +226,7 @@ function checkWin(totalMatches, triesCount, timerCount) {
 			).innerText = `${triesCount.tries} tries`;
 			$message.querySelector(
 				'#winseconds'
-			).innerText = `${timerCount.seconds} seconds`;
-		}, 1000);
+			).innerText = `${timerCount.seconds / 10} seconds`;
+		}, 300);
 	}
 }
