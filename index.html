@@ -14,7 +14,7 @@
 		<div class="app d-flex flex-column align-items-center pt-2">
 
       <div class="container d-flex justify-content-center">
-        <button class="color-1 shadow-sm btn rounded-3" id="shuffle">
+        <button class="color-1 shadow-sm btn rounded-3" id="restart-game">
           Restart Game!
         </button>
       </div>
@@ -22,19 +22,19 @@
       <div class="d-flex w-75 justify-content-around py-3">
         <div class="d-flex align-items-center">
           <i class="bi bi-clock px-3" style="font-size: 2rem; color: cornflowerblue;"></i>Timer
-          <p id="timer" class="text-start px-3 m-0" style="width: 4rem; font-size: 1.4rem;"></p>
+          <p id="timer" class="text-start px-3 m-0" style="width: 4rem; font-size: 1.4rem;">0</p>
         </div>
         <div class="d-flex align-items-center">
           <i class="bi bi-question-circle px-3" style="font-size: 2rem; color: cornflowerblue;"></i>
           Attempts
           <div class="container d-flex justify-content-center">
-            <p id="tries" class="text-center m-0" style="font-size: 1.4rem;"></p>
+            <p id="attempts" class="text-center m-0" style="font-size: 1.4rem;">0</p>
           </div>
         </div>
       </div>
 
       <div class="container">
-        <div id="win" class="alert alert-success">
+        <div id="win-message" class="alert alert-success none">
           <p class="p-1 text-center m-0">
             You took <strong id="wintries"> </strong> and spend <strong id="winseconds"> </strong> to solve the puzzle. <br><strong class="text-center m-0" style="font-size: 1.2rem">Well Done!</strong>
           </p>
@@ -47,95 +47,95 @@
           <div class="row g-0">
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="1" class="img-fluid" src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="2"class="img-fluid" src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="3" class="img-fluid" src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
-              </li>
-            </div>
-          </div>
-          <div class="row g-0">
-            <div class="col-3 p-0">
-              <li class="m-1">
-                <img class="img-fluid"/>
-              </li>
-            </div>
-            <div class="col-3 p-0">
-              <li class="m-1">
-                <img class="img-fluid"/>
-              </li>
-            </div>
-            <div class="col-3 p-0">
-              <li class="m-1">
-                <img class="img-fluid"/>
-              </li>
-            </div>
-            <div class="col-3 p-0">
-              <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="4" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
           </div>
           <div class="row g-0">
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="5" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="6" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="7" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="8" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
           </div>
           <div class="row g-0">
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="9" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="10" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="11" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
             <div class="col-3 p-0">
               <li class="m-1">
-                <img class="img-fluid"/>
+                <img id="12" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
+              </li>
+            </div>
+          </div>
+          <div class="row g-0">
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img id="13" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img id="14" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img id="15" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
+              </li>
+            </div>
+            <div class="col-3 p-0">
+              <li class="m-1">
+                <img id="16" class="img-fluid"  src="./img/questionmark.jpg" alt="Anonimous Card"/>
               </li>
             </div>
           </div>
 
         </ul>
 
-        <div id="progress" class="progress">
+        <div id="progress-bar" class="progress">
           <div id="matches" role="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" class="progress-bar progress-bar-striped progress-bar-animated progressColor1"></div>
         </div>
 

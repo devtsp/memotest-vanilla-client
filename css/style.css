@@ -6,9 +6,7 @@ body {
   max-width: 576px;
   margin: 0 auto;
 }
-ul {
-	padding: 0;
-}
+
 .color-1 {
 	background-color: #9bd89b;
 }
@@ -21,6 +19,9 @@ ul {
 .borderSuccess {
 	border: 3px solid rgba(75, 211, 104, 0.568);
 }
+ul {
+	padding: 0;
+}
 li {
 	list-style: none;
 	background-clip: content-box;
@@ -29,15 +30,20 @@ li {
 	background-position: center;
 	cursor: pointer;
 }
+
 .hidden {
 	opacity: 0;
 }
 .shown {
 	opacity: 1;
 }
-/* img {
+img {
 	opacity: 0.5;
-} */
+}
+
+.back-white {
+  background-color: white;
+}
 
 .none {
   display: none;
