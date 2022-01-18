@@ -1,6 +1,7 @@
 class TurnVariables {
 	names = new Set();
 	ids = new Set();
+	clicks = 0;
 }
 
 let turnState = new TurnVariables();
@@ -74,39 +75,37 @@ const handleDifference = ids => {
 };
 
 const handleCardClick = target => {
-  target.classList.add('hidden');
-  target.style.pointerEvents = 'none';
-  turnState.names.add(target.parentNode.getAttribute('name'));
-  turnState.ids.add(target.parentNode.id);
-  if (turnState.ids.size === 2) {
-    matchState.attempts++;
-    document.querySelector('#attempts').innerText = matchState.attempts;
-    if (turnState.names.size === 1) {
-      handleCoincidence(turnState.names);
-      matchState.coincidences++;
-      $progress.ariaValueNow = `${
-        (matchState.coincidences * 100) / 8
-      }%`;
-      $progress.style.width = `${
-        (matchState.coincidences * 100) / 8
-      }%`;
-      turnState = new TurnVariables();
-      if (matchState.coincidences === 8) {
-        document.querySelector('#final-attempts').innerText =
-          matchState.attempts + ' tries';
-        document.querySelector('#final-time').innerText = $timer.innerText + ' seconds';
-        $winMessage.classList.remove('none');
-        $memotest.classList.add('none');
-      }
-    }
-  }
-  if (turnState.ids.size === 3) {
-    handleDifference(turnState.ids);
-    turnState = new TurnVariables();
-    target.classList.add('hidden');
-    turnState.names.add(target.parentNode.getAttribute('name'));
-    turnState.ids.add(target.parentNode.id);
-  }
+	target.classList.add('hidden');
+	turnState.names.add(target.parentNode.getAttribute('name'));
+	turnState.ids.add(target.parentNode.id);
+	turnState.clicks++;
+	if (turnState.ids.size === 2 && turnState.clicks === 2) {
+		matchState.attempts++;
+		document.querySelector('#attempts').innerText = matchState.attempts;
+		if (turnState.names.size === 1) {
+			handleCoincidence(turnState.names);
+			matchState.coincidences++;
+			$progress.ariaValueNow = `${(matchState.coincidences * 100) / 8}%`;
+			$progress.style.width = `${(matchState.coincidences * 100) / 8}%`;
+			turnState = new TurnVariables();
+			if (matchState.coincidences === 8) {
+				document.querySelector('#final-attempts').innerText =
+					matchState.attempts + ' tries';
+				document.querySelector('#final-time').innerText =
+					$timer.innerText + ' seconds';
+				$winMessage.classList.remove('none');
+				$memotest.classList.add('none');
+			}
+		}
+	}
+	if (turnState.clicks === 3) {
+		handleDifference(turnState.ids);
+		turnState = new TurnVariables();
+		target.classList.add('hidden');
+		turnState.names.add(target.parentNode.getAttribute('name'));
+		turnState.ids.add(target.parentNode.id);
+		turnState.clicks++;
+	}
 };
 
 document.querySelector('#start').onclick = () => {
@@ -125,4 +124,3 @@ document.querySelector('#start').onclick = () => {
 	$memotest.onclick = e =>
 		e.target.nodeName === 'IMG' && handleCardClick(e.target);
 };
-
