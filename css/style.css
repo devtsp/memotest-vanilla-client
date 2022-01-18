@@ -6,18 +6,14 @@ body {
   max-width: 576px;
   margin: 0 auto;
 }
-
-.color-1 {
-	background-color: #9bd89b;
+.start-button {
+	background-color: rgba(186, 228, 192, 0.822);
+  letter-spacing: .08rem;
+  font-weight: 600;
+  border: 3px solid rgba(124, 124, 124, 0.199)
 }
 .progressColor1 {
 	background-color: #9bd89b;
-}
-.borderWrong {
-	border: 3px solid #d36246;
-}
-.borderSuccess {
-	border: 3px solid rgba(75, 211, 104, 0.568);
 }
 ul {
 	padding: 0;
@@ -28,27 +24,22 @@ li {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	cursor: pointer;
 }
-
+.pointer {
+  cursor: pointer;
+}
 .hidden {
 	opacity: 0;
+}
+.hidden-slow {
+  opacity: 0;
+  transition-delay: .5s;
+  transition: opacity 2s;
 }
 .shown {
 	opacity: 1;
 }
-img {
-	opacity: 0.5;
-}
-
-.back-white {
-  background-color: white;
-}
-
 .none {
   display: none;
 }
 
-.font-big {
-  font-size: 1.3rem;
-}
