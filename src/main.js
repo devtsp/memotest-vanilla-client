@@ -55,6 +55,17 @@ const renderTimer = slot => {
 	}, 100);
 };
 
+const changeTurnState = target => {
+	turnState.names.add(target.parentNode.getAttribute('name'));
+	turnState.ids.add(target.parentNode.id);
+	turnState.clicks++;
+};
+
+const handleAttempt = () => {
+	matchState.attempts++;
+	document.querySelector('#attempts').innerText = matchState.attempts;
+};
+
 const handleCoincidence = names => {
 	$backSides.forEach($backSide => {
 		names.has($backSide.getAttribute('name')) &&
@@ -63,62 +74,71 @@ const handleCoincidence = names => {
 				$backSide.pointerEvents = 'all';
 			}, 500);
 	});
+	matchState.coincidences++;
+	$progress.ariaValueNow = `${(matchState.coincidences * 100) / 8}%`;
+	$progress.style.width = `${(matchState.coincidences * 100) / 8}%`;
+	turnState = new TurnVariables();
 };
 
-const handleDifference = ids => {
+const handleDifference = (ids, target) => {
 	$frontSides.forEach($frontSide => {
 		if (ids.has($frontSide.parentNode.id)) {
 			$frontSide.classList.remove('hidden');
 			$frontSide.style.pointerEvents = 'all';
 		}
-	});
+  });
+  turnState = new TurnVariables();
+  target.classList.add('hidden');
+  turnState.names.add(target.parentNode.getAttribute('name'));
+  turnState.ids.add(target.parentNode.id);
+  turnState.clicks++;
 };
 
+const handleWin = () => {
+  document.querySelector('#final-attempts').innerText =
+  matchState.attempts + ' tries';
+	document.querySelector('#final-time').innerText =
+  $timer.innerText + ' seconds';
+	$winMessage.classList.remove('none');
+	$memotest.classList.add('none');
+};
+
+const restartDOM = () => {
+  $winMessage.classList.add('none');
+  $backSides.forEach($backSide => $backSide.classList.remove('hidden'));
+  $frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
+  $memotest.classList.remove('none');
+  document.querySelector('#attempts').innerText = 0;
+  $progress.style.width = 0;
+  $progress.ariaValueNow = 0;
+  $memotest.classList.add('pointer');
+}
+
+const restartState = () => {
+  matchState = new MatchVariables();
+  turnState = new TurnVariables();
+}
+
 const handleCardClick = target => {
-	target.classList.add('hidden');
-	turnState.names.add(target.parentNode.getAttribute('name'));
-	turnState.ids.add(target.parentNode.id);
-	turnState.clicks++;
+  target.classList.add('hidden');
+	changeTurnState(target)
 	if (turnState.ids.size === 2 && turnState.clicks === 2) {
-		matchState.attempts++;
-		document.querySelector('#attempts').innerText = matchState.attempts;
+    handleAttempt();
 		if (turnState.names.size === 1) {
-			handleCoincidence(turnState.names);
-			matchState.coincidences++;
-			$progress.ariaValueNow = `${(matchState.coincidences * 100) / 8}%`;
-			$progress.style.width = `${(matchState.coincidences * 100) / 8}%`;
-			turnState = new TurnVariables();
+      handleCoincidence(turnState.names);
 			if (matchState.coincidences === 8) {
-				document.querySelector('#final-attempts').innerText =
-					matchState.attempts + ' tries';
-				document.querySelector('#final-time').innerText =
-					$timer.innerText + ' seconds';
-				$winMessage.classList.remove('none');
-				$memotest.classList.add('none');
+        handleWin();
 			}
 		}
 	}
 	if (turnState.clicks === 3) {
-		handleDifference(turnState.ids);
-		turnState = new TurnVariables();
-		target.classList.add('hidden');
-		turnState.names.add(target.parentNode.getAttribute('name'));
-		turnState.ids.add(target.parentNode.id);
-		turnState.clicks++;
+    handleDifference(turnState.ids, target);
 	}
 };
 
 document.querySelector('#start').onclick = () => {
-	$winMessage.classList.add('none');
-	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
-	$memotest.classList.remove('none');
-	document.querySelector('#attempts').innerText = 0;
-	$progress.style.width = 0;
-	$progress.ariaValueNow = 0;
-	$memotest.classList.add('pointer');
-	matchState = new MatchVariables();
-	turnState = new TurnVariables();
+  restartDOM()
+  restartState()
 	shuffleCards($backSides, newDuplicateRandomArray(imageReferences));
 	renderTimer($timer);
 	$memotest.onclick = e =>
