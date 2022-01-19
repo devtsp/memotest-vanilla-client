@@ -1,19 +1,24 @@
 body {
-	background-color: #fff;
+	background-color: black;
 }
 .app {
 	height: 100vh;
-  max-width: 576px;
-  margin: 0 auto;
+	max-width: 992px;
+	margin: 0 auto;
 }
 .start-button {
-	background-color: rgba(186, 228, 192, 0.822);
-  letter-spacing: .08rem;
-  font-weight: 600;
-  border: 3px solid rgba(124, 124, 124, 0.199)
+	background-color: rgb(189, 52, 52);
+	letter-spacing: 0.08rem;
+	font-weight: 600;
+	border: 2px solid rgba(29, 24, 24, 0.356);
+	color: black;
+}
+
+#progress-bar {
+	background-color: rgba(70, 50, 50, 0.829);
 }
 .progressColor1 {
-	background-color: #9bd89b;
+	background-color: #8d2506;
 }
 ul {
 	padding: 0;
@@ -24,22 +29,26 @@ li {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+	box-shadow: inset 0 0 50px -5px rgba(0, 0, 0, 0.719);
 }
 .pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 .hidden {
 	opacity: 0;
 }
 .hidden-slow {
-  opacity: 0;
-  transition-delay: .5s;
-  transition: opacity 2s;
+	opacity: 0;
+	transition-delay: 0.5s;
+	transition: opacity 2s;
 }
 .shown {
 	opacity: 1;
 }
 .none {
-  display: none;
+	display: none;
 }
-
+/* 
+img {
+	opacity: 0.8;
+} */
