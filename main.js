@@ -150,10 +150,10 @@ const handleDifference = (ids, target) => {
 };
 
 const handleWin = () => {
-	document.querySelector('#final-attempts').innerText =
-		matchState.attempts + ' tries';
-	document.querySelector('#final-time').innerText =
-		(+$timer.innerText + 0.1).toFixed(2) + ' seconds';
+	document.querySelector('#final-attempts').innerText = matchState.attempts;
+	document.querySelector('#final-time').innerText = (
+		+$timer.innerText + 0.1
+	).toFixed(1);
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
