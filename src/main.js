@@ -38,7 +38,7 @@ const newDuplicateRandomArray = array => randomizeArray(duplicateArray(array));
 const shuffleCards = (slots, content) => {
 	slots.forEach(slot => {
 		let item = content.pop();
-		slot.style.backgroundImage = `url("./img/theme/${item}")`;
+		slot.style.backgroundImage = `url("./img/guitars/${item}")`;
 		slot.setAttribute('name', item.match(/^[\w\d-_]+/));
 	});
 };
