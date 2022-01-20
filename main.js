@@ -75,11 +75,12 @@ const imageReferences = [
 ];
 
 const pickRandomItems = (itemPool, numberOfpicks) => {
+	const shadowPool = [...itemPool];
 	const randomSelections = [];
 	for (let i = 0; i < numberOfpicks; i++) {
-		let randomNum = Math.floor(Math.random() * itemPool.length);
-		randomSelections.push(itemPool[randomNum]);
-		itemPool.splice(randomNum, 1);
+		let randomNum = Math.floor(Math.random() * shadowPool.length);
+		randomSelections.push(shadowPool[randomNum]);
+		shadowPool.splice(randomNum, 1);
 	}
 	return randomSelections;
 };
@@ -152,7 +153,7 @@ const handleWin = () => {
 	document.querySelector('#final-attempts').innerText =
 		matchState.attempts + ' tries';
 	document.querySelector('#final-time').innerText =
-		(+($timer.innerText) + 0.1) + ' seconds';
+		(+$timer.innerText + 0.1).toFixed(2) + ' seconds';
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
