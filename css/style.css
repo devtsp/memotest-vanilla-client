@@ -38,4 +38,7 @@ li {
 .none {
   display: none;
 }
+.click-off {
+  pointer-events: none;
+}
 
