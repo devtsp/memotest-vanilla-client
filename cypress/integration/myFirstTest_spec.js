@@ -37,14 +37,62 @@ describe('Actions espected when clicking Start', () => {
 	it('Each card has a name identificator related to its img content', () => {
 		cy.get('#memotest li').then($lis => {
 			$lis.each((i, $li) => {
-				expect($li.getAttribute('style', 'background-image')).to.include($li.getAttribute('name'));
+				expect($li.getAttribute('style', 'background-image')).to.include(
+					$li.getAttribute('name')
+				);
 			});
 		});
 	});
+});
 
-	it('Board interaction allowed after clicking start', () => {
-		cy.get('#memotest').invoke('css', 'cursor').should('eq', 'pointer')
-    // cy.get('#memotest').should('have.attr', 'onclick');|
+describe('Board interaction', () => {
+	it('Card pointer events removed after click and content visible', () => {
+		cy.get('#1 img')
+			.click()
+			.should('have.class', 'click-off')
+      .and('have.class' ,'hidden');
+		cy.get('#attempts').invoke('text').should('eq', '0');
+	});
 
+	it('Click next card to check attempts incremented by one', () => {
+		cy.get('#2 img').click();
+		cy.get('#attempts').invoke('text').should('eq', '1');
 	});
 });
+
+
+
+
+
+const solution = ($lis) => {
+  cy.log($lis)
+  const pairs = {};
+  $lis.each(
+    (i, $li) => {
+      cy.log($li)
+      const current = pairs[$li].getAttribute('name')
+      if (pairs[current]) {
+        pairs[current].push($li.getAttribute('id'))  
+      } else {
+        pairs[current] = [];
+        pairs[current].push($li.getAttribute('id'))
+      }
+    })
+    cy.log(pairs)
+    return pairs
+}
+
+// const solution = () => {
+//   const pairs = {};
+//   document.querySelectorAll('#memotest li').forEach(
+//     ($li) => {
+//       const current = pairs[$li].getAttribute('name')
+//       if (pairs[current]) {
+//         pairs[current].push($li.getAttribute('id'))  
+//       } else {
+//         pairs[current] = [];
+//         pairs[current].push($li.getAttribute('id'))
+//       }
+//     })
+//     return pairs
+// }
