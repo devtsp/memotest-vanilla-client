@@ -86,7 +86,7 @@ const handleDifference = (ids, target) => {
 		const id = $frontSide.parentNode.id;
 		if (ids.has(id) && id !== target.parentNode.id) {
 			$frontSide.classList.remove('hidden');
-			$frontSide.style.pointerEvents = 'all';
+			$frontSide.classList.remove('click-off');
 		}
 	});
 	turnState = new TurnVariables();
@@ -123,7 +123,7 @@ const restartState = () => {
 
 const handleCardClick = target => {
 	target.classList.add('hidden');
-	target.style.pointerEvents = 'none';
+	target.classList.add('click-off');
 	changeTurnState(target);
   if (turnState.clicks > 1) {
     handleAttempt();
