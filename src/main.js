@@ -59,6 +59,7 @@ const changeTurnState = target => {
 	turnState.names.add(target.parentNode.getAttribute('name'));
 	turnState.ids.add(target.parentNode.id);
 	turnState.clicks++;
+	return turnState;
 };
 
 const handleAttempt = () => {
@@ -82,7 +83,8 @@ const handleCoincidence = names => {
 
 const handleDifference = (ids, target) => {
 	$frontSides.forEach($frontSide => {
-		if (ids.has($frontSide.parentNode.id)) {
+		const id = $frontSide.parentNode.id;
+		if (ids.has(id) && id !== target.parentNode.id) {
 			$frontSide.classList.remove('hidden');
 			$frontSide.style.pointerEvents = 'all';
 		}
@@ -121,19 +123,14 @@ const restartState = () => {
 
 const handleCardClick = target => {
 	target.classList.add('hidden');
+	target.style.pointerEvents = 'none';
 	changeTurnState(target);
-	if (turnState.ids.size === 2 && turnState.clicks === 2) {
-		handleAttempt();
-		if (turnState.names.size === 1) {
-			handleCoincidence(turnState.names);
-			if (matchState.coincidences === 8) {
-				handleWin();
-			}
-		}
-	}
-	if (turnState.clicks === 3) {
-		handleDifference(turnState.ids, target);
-	}
+  if (turnState.clicks > 1) {
+    handleAttempt();
+    turnState.names.size == 1 && handleCoincidence(turnState.names);
+    turnState.clicks == 3 && handleDifference(turnState.ids, target);
+    matchState.coincidences == 8 && handleWin();
+  }
 };
 
 document.querySelector('#start').onclick = () => {
