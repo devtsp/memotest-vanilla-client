@@ -38,7 +38,7 @@ const newDuplicateRandomArray = array => randomizeArray(duplicateArray(array));
 const shuffleCards = (slots, content) => {
 	slots.forEach(slot => {
 		let item = content.pop();
-		slot.style.background = `url("./img/guitars/${item}")`;
+		slot.style.backgroundImage = `url("./img/guitars/${item}")`;
 		slot.setAttribute('name', item.match(/^[\w\d-_]+/));
 	});
 };
@@ -141,6 +141,8 @@ document.querySelector('#start').onclick = () => {
 	restartState();
 	shuffleCards($backSides, newDuplicateRandomArray(imageReferences));
 	renderTimer($timer);
-	$memotest.onclick = e =>
+	$memotest.onclick = e => {
+		e.preventDefault();
 		e.target.nodeName === 'IMG' && handleCardClick(e.target);
+	};
 };

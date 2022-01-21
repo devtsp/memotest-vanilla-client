@@ -18,6 +18,7 @@ body {
 ul {
 	padding: 0;
 }
+
 li {
 	list-style: none;
 	background-clip: content-box;
@@ -30,11 +31,6 @@ li {
 }
 .hidden {
 	opacity: 0;
-}
-.hidden-slow {
-  opacity: 0;
-  transition-delay: .5s;
-  transition: opacity 2s;
 }
 .shown {
 	opacity: 1;
