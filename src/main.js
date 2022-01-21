@@ -38,7 +38,7 @@ const newDuplicateRandomArray = array => randomizeArray(duplicateArray(array));
 const shuffleCards = (slots, content) => {
 	slots.forEach(slot => {
 		let item = content.pop();
-		slot.style.backgroundImage = `url("./img/guitars/${item}")`;
+		slot.style.background = `url("./img/guitars/${item}")`;
 		slot.setAttribute('name', item.match(/^[\w\d-_]+/));
 	});
 };
@@ -86,59 +86,59 @@ const handleDifference = (ids, target) => {
 			$frontSide.classList.remove('hidden');
 			$frontSide.style.pointerEvents = 'all';
 		}
-  });
-  turnState = new TurnVariables();
-  target.classList.add('hidden');
-  turnState.names.add(target.parentNode.getAttribute('name'));
-  turnState.ids.add(target.parentNode.id);
-  turnState.clicks++;
+	});
+	turnState = new TurnVariables();
+	target.classList.add('hidden');
+	turnState.names.add(target.parentNode.getAttribute('name'));
+	turnState.ids.add(target.parentNode.id);
+	turnState.clicks++;
 };
 
 const handleWin = () => {
-  document.querySelector('#final-attempts').innerText =
-  matchState.attempts + ' tries';
+	document.querySelector('#final-attempts').innerText =
+		matchState.attempts + ' tries';
 	document.querySelector('#final-time').innerText =
-  $timer.innerText + ' seconds';
+		$timer.innerText + ' seconds';
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
 
 const restartDOM = () => {
-  $winMessage.classList.add('none');
-  $backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-  $frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
-  $memotest.classList.remove('none');
-  document.querySelector('#attempts').innerText = 0;
-  $progress.style.width = 0;
-  $progress.ariaValueNow = 0;
-  $memotest.classList.add('pointer');
-}
+	$winMessage.classList.add('none');
+	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
+	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
+	$memotest.classList.remove('none');
+	document.querySelector('#attempts').innerText = 0;
+	$progress.style.width = 0;
+	$progress.ariaValueNow = 0;
+	$memotest.classList.add('pointer');
+};
 
 const restartState = () => {
-  matchState = new MatchVariables();
-  turnState = new TurnVariables();
-}
+	matchState = new MatchVariables();
+	turnState = new TurnVariables();
+};
 
 const handleCardClick = target => {
-  target.classList.add('hidden');
-	changeTurnState(target)
+	target.classList.add('hidden');
+	changeTurnState(target);
 	if (turnState.ids.size === 2 && turnState.clicks === 2) {
-    handleAttempt();
+		handleAttempt();
 		if (turnState.names.size === 1) {
-      handleCoincidence(turnState.names);
+			handleCoincidence(turnState.names);
 			if (matchState.coincidences === 8) {
-        handleWin();
+				handleWin();
 			}
 		}
 	}
 	if (turnState.clicks === 3) {
-    handleDifference(turnState.ids, target);
+		handleDifference(turnState.ids, target);
 	}
 };
 
 document.querySelector('#start').onclick = () => {
-  restartDOM()
-  restartState()
+	restartDOM();
+	restartState();
 	shuffleCards($backSides, newDuplicateRandomArray(imageReferences));
 	renderTimer($timer);
 	$memotest.onclick = e =>
