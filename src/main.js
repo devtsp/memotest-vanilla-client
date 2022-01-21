@@ -100,7 +100,7 @@ const handleWin = () => {
 	document.querySelector('#final-attempts').innerText =
 		matchState.attempts + ' tries';
 	document.querySelector('#final-time').innerText =
-		$timer.innerText + ' seconds';
+		(+$timer.innerText + 0.1).toFixed(1) + ' seconds';
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
