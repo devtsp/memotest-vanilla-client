@@ -51,7 +51,7 @@ const renderTimer = slot => {
 	const intervalID = setInterval(() => {
 		matchState.coincidences === 8 ? clearInterval(intervalID) : false;
 		timer++;
-		slot.innerText = `${timer / 10}`;
+		slot.innerText = `${(timer / 10).toFixed(1)}`;
 	}, 100);
 };
 
@@ -98,9 +98,9 @@ const handleDifference = (ids, target) => {
 
 const handleWin = () => {
 	document.querySelector('#final-attempts').innerText =
-		matchState.attempts + ' tries';
+		matchState.attempts;
 	document.querySelector('#final-time').innerText =
-		$timer.innerText + ' seconds';
+		(+$timer.innerText + 0.100).toFixed(1);
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
@@ -108,7 +108,7 @@ const handleWin = () => {
 const restartDOM = () => {
 	$winMessage.classList.add('none');
 	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
+	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden', 'click-off'));
 	$memotest.classList.remove('none');
 	document.querySelector('#attempts').innerText = 0;
 	$progress.style.width = 0;
