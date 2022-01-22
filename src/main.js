@@ -97,10 +97,10 @@ const handleDifference = (ids, target) => {
 };
 
 const handleWin = () => {
-	document.querySelector('#final-attempts').innerText =
-		matchState.attempts;
-	document.querySelector('#final-time').innerText =
-		(+$timer.innerText + 0.100).toFixed(1);
+	document.querySelector('#final-attempts').innerText = matchState.attempts;
+	document.querySelector('#final-time').innerText = (
+		+$timer.innerText + 0.1
+	).toFixed(1);
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
@@ -108,7 +108,9 @@ const handleWin = () => {
 const restartDOM = () => {
 	$winMessage.classList.add('none');
 	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden', 'click-off'));
+	$frontSides.forEach($frontSide =>
+		$frontSide.classList.remove('hidden', 'click-off')
+	);
 	$memotest.classList.remove('none');
 	document.querySelector('#attempts').innerText = 0;
 	$progress.style.width = 0;
@@ -122,15 +124,14 @@ const restartState = () => {
 };
 
 const handleCardClick = target => {
-	target.classList.add('hidden');
-	target.classList.add('click-off');
+	target.classList.add('hidden', 'click-off');
 	changeTurnState(target);
-  if (turnState.clicks > 1) {
-    handleAttempt();
-    turnState.names.size == 1 && handleCoincidence(turnState.names);
-    turnState.clicks == 3 && handleDifference(turnState.ids, target);
-    matchState.coincidences == 8 && handleWin();
-  }
+	if (turnState.clicks > 1) {
+		handleAttempt();
+		turnState.names.size == 1 && handleCoincidence(turnState.names);
+		turnState.clicks == 3 && handleDifference(turnState.ids, target);
+		matchState.coincidences == 8 && handleWin();
+	}
 };
 
 document.querySelector('#start').onclick = () => {
