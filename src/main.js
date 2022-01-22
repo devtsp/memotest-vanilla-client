@@ -100,17 +100,15 @@ const handleWin = () => {
 	document.querySelector('#final-attempts').innerText =
 		matchState.attempts + ' tries';
 	document.querySelector('#final-time').innerText =
-		(+$timer.innerText + 100).toFixed(1) + ' seconds';
+		(+$timer.innerText + 0.1).toFixed(1) + ' seconds';
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
 
 const restartDOM = () => {
 	$winMessage.classList.add('none');
-	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-	$frontSides.forEach($frontSide =>
-		$frontSide.classList.remove('hidden', 'click-off')
-	);
+	$backSides.forEach($back => $back.classList.remove('hidden'));
+	$frontSides.forEach($front => $front.classList.remove('hidden', 'click-off'));
 	$memotest.classList.remove('none');
 	document.querySelector('#attempts').innerText = 0;
 	$progress.style.width = 0;
