@@ -127,7 +127,7 @@ const handleCardClick = target => {
 	target.classList.add('hidden', 'click-off');
 	changeTurnState(target);
 	if (turnState.clicks > 1) {
-		handleAttempt();
+		turnState.ids.size == 2 && handleAttempt();
 		turnState.names.size == 1 && handleCoincidence(turnState.names);
 		turnState.clicks == 3 && handleDifference(turnState.ids, target);
 		matchState.coincidences == 8 && handleWin();
