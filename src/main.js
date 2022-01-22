@@ -112,10 +112,10 @@ const restartDOM = () => {
 		$frontSide.classList.remove('hidden', 'click-off')
 	);
 	$memotest.classList.remove('none');
+	$memotest.classList.add('pointer');
 	document.querySelector('#attempts').innerText = 0;
 	$progress.style.width = 0;
 	$progress.ariaValueNow = 0;
-	$memotest.classList.add('pointer');
 };
 
 const restartState = () => {

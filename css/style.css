@@ -3,14 +3,14 @@ body {
 }
 .app {
 	height: 100vh;
-  max-width: 576px;
-  margin: 0 auto;
+	max-width: 576px;
+	margin: 0 auto;
 }
 .start-button {
 	background-color: rgba(186, 228, 192, 0.822);
-  letter-spacing: .08rem;
-  font-weight: 600;
-  border: 3px solid rgba(124, 124, 124, 0.199)
+	letter-spacing: 0.08rem;
+	font-weight: 600;
+	border: 3px solid rgba(124, 124, 124, 0.199);
 }
 .progressColor1 {
 	background-color: #9bd89b;
@@ -27,7 +27,7 @@ li {
 	background-position: center;
 }
 .pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 .hidden {
 	opacity: 0;
@@ -36,8 +36,11 @@ li {
 	opacity: 1;
 }
 .none {
-  display: none;
+	display: none;
 }
 .click-off {
-  pointer-events: none;
+	pointer-events: 'none';
 }
+
+
+
