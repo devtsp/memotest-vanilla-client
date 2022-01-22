@@ -18,7 +18,6 @@ body {
 ul {
 	padding: 0;
 }
-
 li {
 	list-style: none;
 	background-clip: content-box;
@@ -32,15 +31,10 @@ li {
 .hidden {
 	opacity: 0;
 }
-.shown {
-	opacity: 1;
-}
 .none {
 	display: none;
 }
-.click-off {
-	pointer-events: 'none';
-}
+
 
 
 
