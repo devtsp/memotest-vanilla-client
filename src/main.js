@@ -110,10 +110,10 @@ const restartDOM = () => {
 	$backSides.forEach($back => $back.classList.remove('hidden'));
 	$frontSides.forEach($front => $front.classList.remove('hidden', 'click-off'));
 	$memotest.classList.remove('none');
+	$memotest.classList.add('pointer');
 	document.querySelector('#attempts').innerText = 0;
 	$progress.style.width = 0;
 	$progress.ariaValueNow = 0;
-	$memotest.classList.add('pointer');
 };
 
 const restartState = () => {
@@ -122,8 +122,7 @@ const restartState = () => {
 };
 
 const handleCardClick = target => {
-	target.classList.add('hidden');
-	target.classList.add('click-off');
+	target.classList.add('hidden', 'click-off');
 	changeTurnState(target);
 	if (turnState.clicks > 1) {
 		handleAttempt();
