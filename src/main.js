@@ -71,7 +71,7 @@ const handleCoincidence = names => {
 	$backSides.forEach($backSide => {
 		names.has($backSide.getAttribute('name')) &&
 			setTimeout(() => {
-				$backSide.classList.add('hidden');
+				$backSide.classList.add('hidden','click-off');
 				$backSide.pointerEvents = 'all';
 			}, 500);
 	});
@@ -107,7 +107,7 @@ const handleWin = () => {
 
 const restartDOM = () => {
 	$winMessage.classList.add('none');
-	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
+	$backSides.forEach($backSide => $backSide.classList.remove('hidden', 'click-off'));
 	$frontSides.forEach($frontSide =>
 		$frontSide.classList.remove('hidden')
 	);
