@@ -51,7 +51,7 @@ const renderTimer = slot => {
 	const intervalID = setInterval(() => {
 		matchState.coincidences === 8 ? clearInterval(intervalID) : false;
 		timer++;
-		slot.innerText = `${timer / 10}`;
+		slot.innerText = `${(timer / 10).toFixed(1)}`;
 	}, 100);
 };
 
@@ -86,7 +86,7 @@ const handleDifference = (ids, target) => {
 		const id = $frontSide.parentNode.id;
 		if (ids.has(id) && id !== target.parentNode.id) {
 			$frontSide.classList.remove('hidden');
-			$frontSide.style.pointerEvents = 'all';
+			$frontSide.classList.remove('click-off');
 		}
 	});
 	turnState = new TurnVariables();
@@ -97,18 +97,20 @@ const handleDifference = (ids, target) => {
 };
 
 const handleWin = () => {
-	document.querySelector('#final-attempts').innerText =
-		matchState.attempts + ' tries';
-	document.querySelector('#final-time').innerText =
-		(+$timer.innerText + 0.1).toFixed(1) + ' seconds';
+	document.querySelector('#final-attempts').innerText = matchState.attempts;
+	document.querySelector('#final-time').innerText = (
+		+$timer.innerText + 0.1
+	).toFixed(1);
 	$winMessage.classList.remove('none');
 	$memotest.classList.add('none');
 };
 
 const restartDOM = () => {
 	$winMessage.classList.add('none');
-	$backSides.forEach($back => $back.classList.remove('hidden'));
-	$frontSides.forEach($front => $front.classList.remove('hidden', 'click-off'));
+	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
+	$frontSides.forEach($frontSide =>
+		$frontSide.classList.remove('hidden', 'click-off')
+	);
 	$memotest.classList.remove('none');
 	$memotest.classList.add('pointer');
 	document.querySelector('#attempts').innerText = 0;
