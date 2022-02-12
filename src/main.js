@@ -124,11 +124,10 @@ const restartState = () => {
 };
 
 const handleCardClick = target => {
-	console.log(target);
 	target.classList.add('hidden');
 	console.log(changeTurnState(target));
 	if (turnState.clicks > 1) {
-		turnState.ids.size == 2 && handleAttempt();
+		turnState.clicks == 2 && handleAttempt();
 		turnState.names.size == 1 && handleCoincidence(turnState.names);
 		turnState.clicks == 3 && handleDifference(turnState.ids, target);
 		matchState.coincidences == 8 && handleWin();
