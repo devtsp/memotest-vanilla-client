@@ -8,14 +8,14 @@ describe('Before pressing start (fresh load)', () => {
 		cy.get('#memotest').invoke('css', 'cursor').should('eq', 'auto');
 	});
 
-	it('All front side covers are displayed (despite not having been shuffled yet))', () => {
+	it('All front side covers are displayed (despite not having been shuffled yet)', () => {
 		cy.get('#memotest').should('be.visible');
 		cy.get('#memotest li img')
 			.should('have.attr', 'src', './img/questionmark.jpg')
 			.should('have.css', 'opacity', '1');
 	});
 
-	it('Timer does not run automatically', () => {
+	it('Timer does not run before pressing start on reloading page', () => {
 		cy.get('#timer').invoke('text').should('eq', '0');
 	});
 
@@ -59,11 +59,15 @@ describe('Actions espected when clicking Start', () => {
 });
 
 describe('Board interaction', () => {
-	it('Disable further click on same card when revealing it', () => {
-		cy.get('#1 img')
+	it('Reveal card on click, prevent further clicks on same slot. Attempts do not increment and the card stills visible', () => {
+		cy.get('#1 img').then($1 => {
+      $1.click()
 			.click()
-			.should('have.class', 'click-off')
-			.and('have.class', 'hidden');
+			.click();
+			cy.wrap($1).should('have.class', 'hidden');
+      cy.get("#attempts").invoke('text').should('eq', '0')
+    })
+			
 	});
 
 	it('Attempts counter increases only when clicking a second different card', () => {
@@ -73,7 +77,7 @@ describe('Board interaction', () => {
 		cy.get('#attempts').invoke('text').should('eq', '1');
 	});
 
-	it('Previous 2 mismatched cards are hide after third selection', () => {
+	it('Previous 2 mismatched cards are hide after a third selection', () => {
 		cy.get('#start').click();
 		cy.get(`#${Math.floor(Math.random() * 16 + 1)}`).then($1 => {
 			cy.log($1[0].getAttribute('id'));

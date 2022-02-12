@@ -71,7 +71,7 @@ const handleCoincidence = names => {
 	$backSides.forEach($backSide => {
 		names.has($backSide.getAttribute('name')) &&
 			setTimeout(() => {
-				$backSide.classList.add('hidden');
+				$backSide.classList.add('hidden', 'click-off');
 				$backSide.pointerEvents = 'all';
 			}, 500);
 	});
@@ -107,10 +107,10 @@ const handleWin = () => {
 
 const restartDOM = () => {
 	$winMessage.classList.add('none');
-	$backSides.forEach($backSide => $backSide.classList.remove('hidden'));
-	$frontSides.forEach($frontSide =>
-		$frontSide.classList.remove('hidden', 'click-off')
+	$backSides.forEach($backSide =>
+		$backSide.classList.remove('hidden', 'click-off')
 	);
+	$frontSides.forEach($frontSide => $frontSide.classList.remove('hidden'));
 	$memotest.classList.remove('none');
 	$memotest.classList.add('pointer');
 	document.querySelector('#attempts').innerText = 0;
@@ -124,8 +124,9 @@ const restartState = () => {
 };
 
 const handleCardClick = target => {
-	target.classList.add('hidden', 'click-off');
-	changeTurnState(target);
+	console.log(target);
+	target.classList.add('hidden');
+	console.log(changeTurnState(target));
 	if (turnState.clicks > 1) {
 		turnState.ids.size == 2 && handleAttempt();
 		turnState.names.size == 1 && handleCoincidence(turnState.names);
@@ -140,7 +141,12 @@ document.querySelector('#start').onclick = () => {
 	shuffleCards($backSides, newDuplicateRandomArray(imageReferences));
 	renderTimer($timer);
 	$memotest.onclick = e => {
-		e.preventDefault();
+		if (
+			turnState.ids.has(e.target.parentNode.id) &&
+			turnState.names.size === 1
+		) {
+			return;
+		}
 		e.target.nodeName === 'IMG' && handleCardClick(e.target);
 	};
 };
