@@ -11,18 +11,23 @@
   <link rel="stylesheet" href="./css/style.css">
   <title>Document</title>
 </head>
-<body">
+<body>
   <div class="app d-flex flex-column align-items-center pt-2">
-      <button class="start-button btn rounded-3 shadow px-4" id="start">
-        START
-      </button>
+    <div id="header" class="text-center">
+      <img src="img/icons8-brain-60.png" alt="brain" class="align-top">
+      <h3 id ="title" class="d-inline-block mx-2 my-0 align-top">memotest!</h3>
+      <img id="flipped" src="img/icons8-brain-60.png" alt="brain" class="align-top">
+    </div>
+    <button class="start-button btn rounded-3 shadow px-4 my-3" id="start">
+      START
+    </button>
     <div class="d-flex justify-content-around py-1">
       <div class="d-flex align-items-center">
-        <i class="bi bi-clock px-3" style="font-size: 2rem; color: cornflowerblue;"></i>Timer
+        <i class="bi bi-clock px-3" style="font-size: 1.5rem; color: cornflowerblue;"></i>Timer
         <p id="timer" class="text-start px-3 m-0" style="width: 4rem; font-size: 1.4rem;">0</p>
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-question-circle px-3" style="font-size: 2rem; color: cornflowerblue;"></i>
+        <i class="bi bi-question-circle px-3" style="font-size: 1.5rem; color: cornflowerblue;"></i>
         Attempts
         <div class="container d-flex justify-content-center">
           <p id="attempts" class="text-center m-0" style="font-size: 1.4rem;">0</p>

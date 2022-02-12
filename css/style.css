@@ -6,11 +6,31 @@ body {
 	max-width: 576px;
 	margin: 0 auto;
 }
+
+[alt='brain'] {
+	height: 90%;
+}
+
+#header {
+	height: 40px;
+	width: 100%;
+	line-height: 40px;
+}
+
+#title {
+	color: #203620;
+	z-index: 2000;
+	height: 1px;
+}
+
+#flipped {
+	transform: scaleX(-1);
+}
 .start-button {
 	background-color: rgba(186, 228, 192, 0.822);
 	letter-spacing: 0.08rem;
 	font-weight: 600;
-	border: 3px solid rgba(124, 124, 124, 0.199);
+	border: 2px solid rgba(124, 124, 124, 0.199);
 }
 .progressColor1 {
 	background-color: #9bd89b;
@@ -35,8 +55,5 @@ li {
 	display: none;
 }
 .click-off {
-  pointer-events: none;
+	pointer-events: none;
 }
-
-
-
