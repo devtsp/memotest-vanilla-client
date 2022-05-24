@@ -1,3 +1,1 @@
-### [Play Memotest!!](https://devtsp.github.io/memo-test/)
-
-
+### [Play Memotest!!](https://devtsp.github.io/memotest-vanilla-client/)
